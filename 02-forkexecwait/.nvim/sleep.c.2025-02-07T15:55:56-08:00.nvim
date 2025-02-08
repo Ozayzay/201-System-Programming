@@ -1,0 +1,9 @@
+#include <stdio.h>
+#include <unistd.h>
+
+int main(void) {
+  printf("Hello\n Now we wait 5 seconds");
+  sleep(5);
+  printf("Hello again\n");
+
+}
