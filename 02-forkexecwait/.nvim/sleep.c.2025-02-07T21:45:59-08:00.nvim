@@ -5,7 +5,6 @@ int main() {
   int ret_val = fork();
   for (int i = 0; i < 20; i++) {
     printf("Sleeping%d\n", ret_val);
-    fflush(stdout); // Flush the output buffer immediately
     sleep(1);
   }
   printf("DONE\n");
