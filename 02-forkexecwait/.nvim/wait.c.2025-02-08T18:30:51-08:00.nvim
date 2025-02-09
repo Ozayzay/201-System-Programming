@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+
+int main() {
+  pid_t ret_val = fork();
+
+  if (ret_val == 0) {
+    // child process
+    printf(" child process \n");
+    execlp("ls", "ls", "-a", "-l", NULL);
+
+  } else {
+    // wait for the child process finished
+    if waitpid( -1 , &wstatus, 0 ) == -1) {
+      perror("waitpid");
+      return 1;
+    }
+
+    if (WIFEXITED(wstatus)) {
+      printf("Child exited with status %d\n", WEXITSTATUS(wstatus));
+    }
+    printf(" Parent Process \n");
+    execlp("ls", "ls", "-a", NULL);
+  }
+}
